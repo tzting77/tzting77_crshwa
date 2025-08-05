@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tzting77</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 30px; }
+    input, button { padding: 10px; margin: 5px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>🔧 WA Pentest Tool - Tzting77</h2>
+  <input type="text" id="number" placeholder="Masukkan Nomor (628xxx)" />
+  <br />
+  <button onclick="sendBug('crashwa')">CrashWA</button>
+  <button onclick="sendBug('invisdelay')">InvisDelay</button>
+  <button onclick="sendBug('fc-Tzting77')">FC-Tzting77</button>
+  <button onclick="sendBug('invis')">Invis</button>
+
+  <script>
+    async function sendBug(type) {
+      const number = document.getElementById('number').value;
+      if (!number) return alert("Masukkan nomor!");
+      const res = await fetch(`/send-bug`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ number, type })
+      });
+      const data = await res.json();
+      alert(data.message);
+    }
+  </script>
+</body>
+</html>
